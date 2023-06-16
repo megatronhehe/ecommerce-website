@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { productsArray } from "../data/data";
+import React, { useState, useContext } from "react";
+import { Context } from "../context/Context";
 
 const Categories = () => {
-	const [allProducts, setAllProducts] = useState(productsArray);
-	const [selectedCategory, setSelectedCategory] = useState("all");
+	const { allProducts, selectedCategory, setSelectedCategory } =
+		useContext(Context);
 
 	const filteredItems = allProducts.filter(
 		(item) => item.type === selectedCategory
@@ -15,13 +15,13 @@ const Categories = () => {
 		</div>
 	));
 
-	const allItemsElement = productsArray.map((item, i) => (
+	const allItemsElement = allProducts.map((item, i) => (
 		<div key={i} className="w-full h-40 bg-white shadow-md">
 			{item.name}
 		</div>
 	));
 
-	const categoriesArray = [...new Set(productsArray.map((item) => item.type))];
+	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
 
 	const categoriesElement = categoriesArray.map((item, i) => (
 		<p

@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
 
 const Home = () => {
+	const { allProducts, setSelectedCategory } = useContext(Context);
+
+	const featuredItemsElement = allProducts.slice(0, 4).map((item) => (
+		<div key={item.id} className="h-32 xl:h-48 w-full bg-white shadow-md">
+			{item.name}
+		</div>
+	));
+
+	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
+	// const categoriesElement = categoriesArray.map((item, i) => {
+
+	// });
+
+	const test = categoriesArray.map((item, i) => (
+		<Link
+			key={i}
+			to="/categories"
+			onClick={() => setSelectedCategory(item)}
+			className={`h-48 w-full bg-white shadow-md ${
+				i % 2 === 0 && "col-span-2"
+			}`}
+		>
+			<div>{item}</div>
+		</Link>
+	));
+
+	console.log(test);
+
 	return (
 		<div className="h-full sm:grid grid-cols-7 ">
 			<div className="bg-gray-200"></div>
@@ -15,10 +45,7 @@ const Home = () => {
 							Featured Items
 						</h1>
 						<div className="px-4 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:gap-6">
-							<div className="h-32 xl:h-48 w-full bg-white shadow-md"></div>
-							<div className="h-32 xl:h-48 w-full bg-white shadow-md"></div>
-							<div className="h-32 xl:h-48 w-full bg-white shadow-md"></div>
-							<div className="h-32 xl:h-48 w-full bg-white shadow-md"></div>
+							{featuredItemsElement}
 						</div>
 					</section>
 
@@ -26,12 +53,7 @@ const Home = () => {
 						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
 							Categories
 						</h1>
-						<div className="px-4 grid grid-cols-3 gap-3 xl:gap-10">
-							<div className="h-48 w-full bg-white col-span-2 shadow-md"></div>
-							<div className="h-48 w-full bg-white shadow-md"></div>
-							<div className="h-48 w-full bg-white shadow-md"></div>
-							<div className="h-48 w-full bg-white col-span-2 shadow-md"></div>
-						</div>
+						<div className="px-4 grid grid-cols-3 gap-3 xl:gap-10">{test}</div>
 					</section>
 				</div>
 			</div>
