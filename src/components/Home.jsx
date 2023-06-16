@@ -12,11 +12,8 @@ const Home = () => {
 	));
 
 	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
-	// const categoriesElement = categoriesArray.map((item, i) => {
 
-	// });
-
-	const test = categoriesArray.map((item, i) => (
+	const categoriesElement = categoriesArray.map((item, i) => (
 		<Link
 			key={i}
 			to="/categories"
@@ -28,8 +25,6 @@ const Home = () => {
 			<div>{item}</div>
 		</Link>
 	));
-
-	console.log(test);
 
 	return (
 		<div className="h-full sm:grid grid-cols-7 ">
@@ -53,7 +48,9 @@ const Home = () => {
 						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
 							Categories
 						</h1>
-						<div className="px-4 grid grid-cols-3 gap-3 xl:gap-10">{test}</div>
+						<div className="px-4 grid grid-cols-3 gap-3 xl:gap-10">
+							{categoriesElement}
+						</div>
 					</section>
 				</div>
 			</div>

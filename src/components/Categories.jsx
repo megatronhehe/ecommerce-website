@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
 const Categories = () => {
@@ -16,9 +17,13 @@ const Categories = () => {
 	));
 
 	const allItemsElement = allProducts.map((item, i) => (
-		<div key={i} className="w-full h-40 bg-white shadow-md">
+		<Link
+			to={`/categories/${item.id}`}
+			key={i}
+			className="w-full h-40 bg-white shadow-md"
+		>
 			{item.name}
-		</div>
+		</Link>
 	));
 
 	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];

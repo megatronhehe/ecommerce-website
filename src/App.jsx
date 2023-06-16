@@ -5,7 +5,8 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Cart from "./components/Cart";
-import Footer from "./components/Footer";
+import ProductDetails from "./components/ProductDetails";
+// import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Home />} />
 					<Route path="/categories" element={<Categories />} />
+					<Route path="/categories/:productId" element={<ProductDetails />} />
 					<Route path="/cart" element={<Cart />} />
 				</Routes>
 			</main>
