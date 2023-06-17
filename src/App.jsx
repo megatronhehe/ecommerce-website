@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Cart from "./components/Cart";
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./components/productDetails";
 // import Footer from "./components/Footer";
 
 function App() {

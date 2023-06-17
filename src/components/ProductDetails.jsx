@@ -1,10 +1,110 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { productsArray } from "../data/data";
 
 const ProductDetails = () => {
 	const { productId } = useParams();
+	const navigate = useNavigate();
 
-	return <h1>{productId}</h1>;
+	const thisProduct = productsArray.find((item) => item.id == productId);
+
+	const [thisProductData, setThisProductData] = useState({
+		...thisProduct,
+		size: thisProduct.size[0],
+		color: thisProduct.color[0],
+	});
+
+	const chooseSize = (selectedSize) => {
+		setThisProductData((prev) => ({ ...prev, size: selectedSize }));
+	};
+
+	const chooseColor = (selectedColor) => {
+		setThisProductData((prev) => ({ ...prev, color: selectedColor }));
+	};
+
+	const plusQuantity = () => {
+		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity + 1 }));
+	};
+
+	const minusQuantity = () => {
+		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
+	};
+
+	const sizeElement = thisProduct.size.map((item, i) => (
+		<p
+			key={i}
+			onClick={() => chooseSize(item)}
+			className={`border border-rose-900 px-4 py-1 rounded-md hover:bg-rose-900 hover:text-rose-100 ${
+				thisProductData.size === item && "bg-rose-900  text-rose-100"
+			}`}
+		>
+			{item}
+		</p>
+	));
+
+	const colorElement = thisProduct.color.map((item, i) => (
+		<p
+			key={i}
+			onClick={() => chooseColor(item)}
+			className={`border border-rose-900 px-4 py-1 rounded-md hover:bg-rose-900 hover:text-rose-100 ${
+				thisProductData.color === item && "bg-rose-900 text-rose-100"
+			}`}
+		>
+			{item}
+		</p>
+	));
+
+	console.log(thisProductData);
+
+	return (
+		<div className="h-full sm:grid grid-cols-7 ">
+			<div className="bg-gray-200"></div>
+			<div className="bg-gray-100 w-full col-span-5 px-2 pt-4">
+				<p className="ml-4" onClick={() => navigate(-1)}>
+					back
+				</p>
+				<div className="px-4 py-8 w-full lg:flex md:gap-4 h-screen">
+					<div className="bg-white shadow-md w-full flex justify-center items-center h-1/2">
+						+image here
+					</div>
+					<div className="bg-white shadow-md w-full h-full md:h-1/2 mt-8 lg:mt-0 p-4">
+						<h1 className="text-center tracking-widest text-rose-900 text-lg border-b border-rose-900 py-2">
+							{thisProduct.name}
+						</h1>
+						<p className="mt-4 text-xl text-center"> {thisProduct.price}</p>
+						<p className="mt-4">type : {thisProduct.type}</p>
+						<p className="mt-4">size :</p>
+						<div className="flex gap-3">{sizeElement}</div>
+						<p className="mt-4">color :</p>
+						<div className="flex gap-3">{colorElement}</div>
+						<div className="flex items-center mt-4 gap-5">
+							quantity :
+							<button
+								onClick={plusQuantity}
+								className="w-8 h-8 rounded-full text-rose-900 border border-rose-900 flex justify-center items-center text-xl hover:bg-rose-900 hover:text-rose-100"
+							>
+								+
+							</button>
+							<p className="">{thisProductData.quantity}</p>
+							<button
+								onClick={minusQuantity}
+								className={`w-8 h-8 rounded-full text-rose-900 
+                            border border-rose-900 flex justify-center items-center text-xl hover:bg-rose-900 hover:text-rose-100`}
+								disabled={thisProductData.quantity < 1 ? true : false}
+							>
+								-
+							</button>
+							<div className="flex gap-6"></div>
+						</div>
+						<p className="text-center mt-8 bg-rose-900 text-yellow-300 text-lg rounded-lg py-1 shadow-md">
+							+ add to cart
+						</p>
+					</div>
+				</div>
+			</div>
+			<div className="w-full bg-gray-200"></div>
+		</div>
+	);
 };
 
 export default ProductDetails;

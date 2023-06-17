@@ -11,18 +11,28 @@ const Categories = () => {
 	);
 
 	const filteredItemsElement = filteredItems.map((item, i) => (
-		<div key={i} className="w-full h-40 bg-white shadow-md">
-			{item.name}
-		</div>
+		<Link
+			to={`/categories/${item.id}`}
+			key={i}
+			className="w-full h-40 bg-white shadow-md flex justify-center items-end"
+		>
+			<div className="text-sm ">
+				<p>{item.name}</p>
+				<p>{item.price}</p>
+			</div>
+		</Link>
 	));
 
 	const allItemsElement = allProducts.map((item, i) => (
 		<Link
 			to={`/categories/${item.id}`}
 			key={i}
-			className="w-full h-40 bg-white shadow-md"
+			className="w-full h-40 bg-white shadow-md flex justify-center items-end"
 		>
-			{item.name}
+			<div className="text-sm ">
+				<p>{item.name}</p>
+				<p>{item.price}</p>
+			</div>
 		</Link>
 	));
 

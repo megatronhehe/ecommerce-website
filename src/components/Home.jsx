@@ -5,10 +5,17 @@ import { Context } from "../context/Context";
 const Home = () => {
 	const { allProducts, setSelectedCategory } = useContext(Context);
 
-	const featuredItemsElement = allProducts.slice(0, 4).map((item) => (
-		<div key={item.id} className="h-32 xl:h-48 w-full bg-white shadow-md">
-			{item.name}
-		</div>
+	const featuredItemsElement = allProducts.slice(0, 4).map((item, i) => (
+		<Link
+			to={`/categories/${item.id}`}
+			key={i}
+			className="w-full h-40 bg-white shadow-md flex justify-center items-end"
+		>
+			<div className="text-sm ">
+				<p>{item.name}</p>
+				<p>{item.price}</p>
+			</div>
+		</Link>
 	));
 
 	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
