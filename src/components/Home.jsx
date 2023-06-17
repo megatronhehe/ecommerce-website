@@ -13,7 +13,7 @@ const Home = () => {
 		>
 			<div className="text-sm ">
 				<p>{item.name}</p>
-				<p>{item.price}</p>
+				<p>${item.price}</p>
 			</div>
 		</Link>
 	));
@@ -25,7 +25,7 @@ const Home = () => {
 			key={i}
 			to="/categories"
 			onClick={() => setSelectedCategory(item)}
-			className={`h-48 w-full bg-white shadow-md ${
+			className={`h-48 w-full bg-white shadow-md flex justify-center items-center ${
 				i % 2 === 0 && "col-span-2"
 			}`}
 		>

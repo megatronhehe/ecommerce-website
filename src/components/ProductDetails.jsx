@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../context/Context";
 import { useParams, useNavigate } from "react-router-dom";
 import { productsArray } from "../data/data";
 
 const ProductDetails = () => {
+	const { setCart, cart } = useContext(Context);
 	const { productId } = useParams();
 	const navigate = useNavigate();
 
@@ -30,6 +32,10 @@ const ProductDetails = () => {
 		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
 	};
 
+	const addToCart = () => {
+		setCart((prev) => [...prev, thisProductData]);
+	};
+
 	const sizeElement = thisProduct.size.map((item, i) => (
 		<p
 			key={i}
@@ -53,8 +59,6 @@ const ProductDetails = () => {
 			{item}
 		</p>
 	));
-
-	console.log(thisProductData);
 
 	return (
 		<div className="h-full sm:grid grid-cols-7 ">
@@ -90,13 +94,16 @@ const ProductDetails = () => {
 								onClick={minusQuantity}
 								className={`w-8 h-8 rounded-full text-rose-900 
                             border border-rose-900 flex justify-center items-center text-xl hover:bg-rose-900 hover:text-rose-100`}
-								disabled={thisProductData.quantity < 1 ? true : false}
+								disabled={thisProductData.quantity < 2 ? true : false}
 							>
 								-
 							</button>
 							<div className="flex gap-6"></div>
 						</div>
-						<p className="text-center mt-8 bg-rose-900 text-yellow-300 text-lg rounded-lg py-1 shadow-md">
+						<p
+							onClick={addToCart}
+							className="text-center mt-8 bg-rose-900 text-yellow-300 text-lg rounded-lg py-1 shadow-md"
+						>
 							+ add to cart
 						</p>
 					</div>

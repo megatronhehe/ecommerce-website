@@ -18,7 +18,7 @@ const Categories = () => {
 		>
 			<div className="text-sm ">
 				<p>{item.name}</p>
-				<p>{item.price}</p>
+				<p>${item.price}</p>
 			</div>
 		</Link>
 	));
@@ -31,7 +31,7 @@ const Categories = () => {
 		>
 			<div className="text-sm ">
 				<p>{item.name}</p>
-				<p>{item.price}</p>
+				<p>${item.price}</p>
 			</div>
 		</Link>
 	));

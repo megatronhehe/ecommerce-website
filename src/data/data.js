@@ -6,7 +6,7 @@ export const productsArray = [
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
 		img: "...",
-		price: "$29.99",
+		price: 30,
 		quantity: 1,
 	},
 	{
@@ -16,7 +16,7 @@ export const productsArray = [
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
 		img: "...",
-		price: "$29.99",
+		price: 30,
 		quantity: 1,
 	},
 	{
@@ -26,7 +26,7 @@ export const productsArray = [
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
 		img: "...",
-		price: "$29.99",
+		price: 15,
 		quantity: 1,
 	},
 	{
@@ -36,7 +36,7 @@ export const productsArray = [
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
 		img: "...",
-		price: "$29.99",
+		price: 15,
 		quantity: 1,
 	},
 	{
@@ -46,7 +46,7 @@ export const productsArray = [
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
 		img: "...",
-		price: "$29.99",
+		price: 20,
 		quantity: 1,
 	},
 	{
@@ -56,7 +56,7 @@ export const productsArray = [
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
 		img: "...",
-		price: "$29.99",
+		price: 15,
 		quantity: 1,
 	},
 ];

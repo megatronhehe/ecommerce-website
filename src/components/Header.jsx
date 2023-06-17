@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../context/Context";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+	const { cart } = useContext(Context);
+
+	const countCart = () => {
+		let total = 0;
+		cart.forEach((item) => (total += item.quantity));
+		return total;
+	};
+
 	return (
 		<nav className="text-rose-200 bg-rose-900 px-12  text-center pt-3 sm:flex justify-between items-center sm:pt-0 ">
 			<Link to="/">
@@ -15,7 +24,14 @@ const Header = () => {
 					<li>Categories</li>
 				</Link>
 				<Link to="/cart">
-					<li>Cart</li>
+					<li>
+						Cart
+						{cart.length > 0 && (
+							<span className="bg-white text-rose-900 ml-2 px-3 rounded-full font-bold text-sm">
+								{countCart()}
+							</span>
+						)}
+					</li>
 				</Link>
 			</ul>
 		</nav>
