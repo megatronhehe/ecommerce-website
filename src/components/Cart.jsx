@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
 const Cart = () => {
@@ -34,14 +35,23 @@ const Cart = () => {
 					<h1 className="text-rose-900 text-xl mb-6 border-b border-rose-900 pb-4">
 						Cart
 					</h1>
-					<div className="grid grid-cols-6 gap-1 justify-center text-sm">
-						<div className="w-full ">Item {itemImageElement}</div>
-						<div className="w-full ">Name {itemNameElement}</div>
-						<div className="w-full ">Color {itemColorElement}</div>
-						<div className="w-full ">Size {itemSizeElement}</div>
-						<div className="w-full ">Quantity {itemQuantityElement}</div>
-						<div className="w-full ">Price {itemPriceElement}</div>
-					</div>
+					{cart.length > 0 ? (
+						<div className="grid grid-cols-6 gap-1 justify-center text-sm">
+							<div className="w-full ">Item {itemImageElement}</div>
+							<div className="w-full ">Name {itemNameElement}</div>
+							<div className="w-full ">Color {itemColorElement}</div>
+							<div className="w-full ">Size {itemSizeElement}</div>
+							<div className="w-full ">Quantity {itemQuantityElement}</div>
+							<div className="w-full ">Price {itemPriceElement}</div>
+						</div>
+					) : (
+						<Link to="/categories">
+							<p className="text-sm tracking-wide text-gray-400 mt-16">
+								Your cart is empty, go order now and buy and probably make me
+								rich or something bro sana buru !
+							</p>
+						</Link>
+					)}
 					{cart.length > 0 && (
 						<p className="mt-8 tracking-wide font-rose-900">
 							Total price :

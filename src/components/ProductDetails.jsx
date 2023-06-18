@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 import { useParams, useNavigate } from "react-router-dom";
 import { productsArray } from "../data/data";
 
 const ProductDetails = () => {
-	const { setCart, cart } = useContext(Context);
+	const { setCart, cart, countCart } = useContext(Context);
 	const { productId } = useParams();
 	const navigate = useNavigate();
 
@@ -14,14 +15,24 @@ const ProductDetails = () => {
 		...thisProduct,
 		size: thisProduct.size[0],
 		color: thisProduct.color[0],
+		altId: `${thisProduct.id}${thisProduct.type}${thisProduct.size[0]}${thisProduct.color[0]}`,
 	});
+
+	const setNewAltId = () => {
+		setThisProductData((prev) => ({
+			...prev,
+			altId: `${prev.id}${prev.type}${prev.size}${prev.color}`,
+		}));
+	};
 
 	const chooseSize = (selectedSize) => {
 		setThisProductData((prev) => ({ ...prev, size: selectedSize }));
+		setNewAltId();
 	};
 
 	const chooseColor = (selectedColor) => {
 		setThisProductData((prev) => ({ ...prev, color: selectedColor }));
+		setNewAltId();
 	};
 
 	const plusQuantity = () => {
@@ -33,7 +44,20 @@ const ProductDetails = () => {
 	};
 
 	const addToCart = () => {
-		setCart((prev) => [...prev, thisProductData]);
+		setCart((prev) => {
+			const isExistInCart = prev.some(
+				(item) => item.altId === thisProductData.altId
+			);
+			if (isExistInCart) {
+				return prev.map((item) =>
+					item.altId === thisProductData.altId
+						? { ...item, quantity: item.quantity + thisProductData.quantity }
+						: item
+				);
+			} else {
+				return [...prev, thisProductData];
+			}
+		});
 	};
 
 	const sizeElement = thisProduct.size.map((item, i) => (
@@ -75,7 +99,7 @@ const ProductDetails = () => {
 						<h1 className="text-center tracking-widest text-rose-900 text-lg border-b border-rose-900 py-2">
 							{thisProduct.name}
 						</h1>
-						<p className="mt-4 text-xl text-center"> {thisProduct.price}</p>
+						<p className="mt-4 text-xl text-center"> ${thisProduct.price}</p>
 						<p className="mt-4">type : {thisProduct.type}</p>
 						<p className="mt-4">size :</p>
 						<div className="flex gap-3">{sizeElement}</div>
@@ -102,10 +126,19 @@ const ProductDetails = () => {
 						</div>
 						<p
 							onClick={addToCart}
-							className="text-center mt-8 bg-rose-900 text-yellow-300 text-lg rounded-lg py-1 shadow-md"
+							className="text-center mt-6 bg-rose-900 text-yellow-300 text-lg rounded-lg py-1 shadow-md"
 						>
 							+ add to cart
 						</p>
+						{countCart() > 0 && (
+							<Link to="/cart">
+								<p className="text-center mt-4 text-sm text-gray-400">
+									you have <span className="font-bold">{countCart()}</span>{" "}
+									{countCart() > 1 ? "items" : "item"} in your cart, click to
+									check{" "}
+								</p>
+							</Link>
+						)}
 					</div>
 				</div>
 			</div>

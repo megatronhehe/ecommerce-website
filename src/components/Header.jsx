@@ -3,18 +3,12 @@ import { Context } from "../context/Context";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-	const { cart } = useContext(Context);
-
-	const countCart = () => {
-		let total = 0;
-		cart.forEach((item) => (total += item.quantity));
-		return total;
-	};
+	const { cart, countCart } = useContext(Context);
 
 	return (
 		<nav className="text-rose-200 bg-rose-900 px-12  text-center pt-3 sm:flex justify-between items-center sm:pt-0 ">
 			<Link to="/">
-				<h1 className="text-3xl tracking-widest">iregal</h1>
+				<h1 className="text-3xl tracking-widest">whatevs</h1>
 			</Link>
 			<ul className="py-8 flex justify-between w-full sm:w-64">
 				<Link to="/">

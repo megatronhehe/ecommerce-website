@@ -8,6 +8,12 @@ const ContextProvider = ({ children }) => {
 	const [selectedCategory, setSelectedCategory] = useState("all");
 	const [cart, setCart] = useState([]);
 
+	const countCart = () => {
+		let total = 0;
+		cart.forEach((item) => (total += item.quantity));
+		return total;
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -16,6 +22,7 @@ const ContextProvider = ({ children }) => {
 				cart,
 				setSelectedCategory,
 				setCart,
+				countCart,
 			}}
 		>
 			{children}

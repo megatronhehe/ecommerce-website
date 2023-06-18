@@ -1,7 +1,8 @@
 export const productsArray = [
 	{
 		id: 0,
-		name: "Bloom and Wither",
+		altId: "",
+		name: "whatever hoodie 1",
 		type: "hoodie",
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
@@ -11,7 +12,8 @@ export const productsArray = [
 	},
 	{
 		id: 1,
-		name: "Dirty Wealth",
+		altId: "",
+		name: "whatever hoodie 2",
 		type: "hoodie",
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
@@ -21,7 +23,8 @@ export const productsArray = [
 	},
 	{
 		id: 2,
-		name: "Deception",
+		altId: "",
+		name: "whatever shirt 1",
 		type: "shirt",
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
@@ -31,7 +34,8 @@ export const productsArray = [
 	},
 	{
 		id: 3,
-		name: "Fake",
+		altId: "",
+		name: "whatever shirt 2",
 		type: "shirt",
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
@@ -41,7 +45,8 @@ export const productsArray = [
 	},
 	{
 		id: 4,
-		name: "Sweet Revenge",
+		altId: "",
+		name: "whatever crewneck 1",
 		type: "crewneck",
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
@@ -51,7 +56,7 @@ export const productsArray = [
 	},
 	{
 		id: 5,
-		name: "Mental Burden",
+		name: "whatever sleeveless 1",
 		type: "sleeveless",
 		size: ["xs", "s", "m", "l", "xl"],
 		color: ["rose", "blue", "black", "gray"],
