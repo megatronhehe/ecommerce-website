@@ -21,6 +21,10 @@ const Cart = () => {
 		);
 	};
 
+	const deleteItemInCart = (altid) => {
+		setCart((prev) => prev.filter((item) => item.altId !== altid));
+	};
+
 	const itemImageElement = cart.map((item, i) => <p key={i}>{item.img}</p>);
 
 	const itemNameElement = cart.map((item, i) => <p key={i}>{item.name}</p>);
@@ -41,6 +45,9 @@ const Cart = () => {
 				disabled={item.quantity < 2 ? true : false}
 			>
 				-
+			</button>
+			<button onClick={() => deleteItemInCart(item.altId)} className="ml-2">
+				x
 			</button>
 		</p>
 	));
