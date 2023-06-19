@@ -25,42 +25,53 @@ const Cart = () => {
 		setCart((prev) => prev.filter((item) => item.altId !== altid));
 	};
 
-	const itemImageElement = cart.map((item, i) => <p key={i}>{item.img}</p>);
-
-	const itemNameElement = cart.map((item, i) => <p key={i}>{item.name}</p>);
-
-	const itemColorElement = cart.map((item, i) => <p key={i}>{item.color}</p>);
-
-	const itemSizeElement = cart.map((item, i) => <p key={i}>{item.size}</p>);
-
-	const itemQuantityElement = cart.map((item, i) => (
-		<p key={i}>
-			<button onClick={() => plusQuantityInCart(item.altId)} className="mr-2">
-				+
-			</button>
-			{item.quantity}
-			<button
-				onClick={() => minusQuantityInCart(item.altId)}
-				className="ml-2"
-				disabled={item.quantity < 2 ? true : false}
-			>
-				-
-			</button>
-			<button onClick={() => deleteItemInCart(item.altId)} className="ml-2">
-				x
-			</button>
-		</p>
-	));
-
-	const itemPriceElement = cart.map((item, i) => (
-		<p key={i}>${item.price * item.quantity}</p>
-	));
-
 	const countTotalPrice = () => {
 		let total = 0;
 		cart.forEach((item) => (total += item.price * item.quantity));
 		return total;
 	};
+
+	const itemsInCartElement = cart.map((item, i) => (
+		<div key={i} className="bg-white h-32 w-full p-2 flex mt-4 shadow-md">
+			<Link
+				to={`/categories/${item.id}`}
+				className="h-full w-1/3 bg-gray-100 flex justify-center items-center text-xs p-2 rounded-md"
+			>
+				+ product picture here
+			</Link>
+			<div className="w-full text-center px-4">
+				<h1 className="border-b border-rose-900 mb-5 tracking-widest pb-1">
+					<Link to={`/categories/${item.id}`}>{item.name}</Link>
+				</h1>
+				<div className="flex justify-around items-center">
+					<div>
+						<p>{item.type}</p>
+						<p>{item.color}</p>
+					</div>
+					<div>
+						<p>${item.price * item.quantity}</p>
+						<div className="flex gap-2 justify-center items-center">
+							<button
+								className=" text-rose-900 px-1 rounded-full"
+								onClick={() => plusQuantityInCart(item.altId)}
+							>
+								+
+							</button>
+							{item.quantity}
+							<button
+								className=" text-rose-900 px-1 rounded-full"
+								onClick={() => minusQuantityInCart(item.altId)}
+								disabled={item.quantity < 2 ? true : false}
+							>
+								-
+							</button>
+						</div>
+					</div>
+					<button onClick={() => deleteItemInCart(item.altId)}>x</button>
+				</div>
+			</div>
+		</div>
+	));
 
 	return (
 		<div className="h-full sm:grid grid-cols-7 ">
@@ -70,15 +81,15 @@ const Cart = () => {
 					<h1 className="text-rose-900 text-xl mb-6 border-b border-rose-900 pb-4">
 						Cart
 					</h1>
+					{cart.length > 0 && (
+						<p className="mt-8 tracking-wide font-rose-900">
+							Total price :
+							<span className="font-bold ml-4">${countTotalPrice()}</span>
+						</p>
+					)}
+
 					{cart.length > 0 ? (
-						<div className="grid grid-cols-6 gap-1 justify-center text-sm">
-							<div className="w-full ">Item {itemImageElement}</div>
-							<div className="w-full ">Name {itemNameElement}</div>
-							<div className="w-full ">Color {itemColorElement}</div>
-							<div className="w-full ">Size {itemSizeElement}</div>
-							<div className="w-full ">Quantity {itemQuantityElement}</div>
-							<div className="w-full ">Price {itemPriceElement}</div>
-						</div>
+						itemsInCartElement
 					) : (
 						<Link to="/categories">
 							<p className="text-sm tracking-wide text-gray-400 mt-16">
@@ -86,12 +97,6 @@ const Cart = () => {
 								rich or something bro sana buru !
 							</p>
 						</Link>
-					)}
-					{cart.length > 0 && (
-						<p className="mt-8 tracking-wide font-rose-900">
-							Total price :
-							<span className="font-bold ml-4">${countTotalPrice()}</span>
-						</p>
 					)}
 				</div>
 			</div>

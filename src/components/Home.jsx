@@ -42,7 +42,7 @@ const Home = () => {
 				</section>
 
 				<div className="bg-gray-100 px-4 py-12 text-center">
-					<section className="mb-12  xl:px-16">
+					<section className="mb-12 xl:px-16">
 						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
 							Featured Items
 						</h1>
