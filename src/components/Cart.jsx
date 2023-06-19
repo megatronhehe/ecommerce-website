@@ -3,7 +3,23 @@ import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
 const Cart = () => {
-	const { cart } = useContext(Context);
+	const { cart, setCart } = useContext(Context);
+
+	const plusQuantityInCart = (altid) => {
+		setCart((prev) =>
+			prev.map((item) =>
+				item.altId === altid ? { ...item, quantity: item.quantity + 1 } : item
+			)
+		);
+	};
+
+	const minusQuantityInCart = (altid) => {
+		setCart((prev) =>
+			prev.map((item) =>
+				item.altId === altid ? { ...item, quantity: item.quantity - 1 } : item
+			)
+		);
+	};
 
 	const itemImageElement = cart.map((item, i) => <p key={i}>{item.img}</p>);
 
@@ -14,7 +30,19 @@ const Cart = () => {
 	const itemSizeElement = cart.map((item, i) => <p key={i}>{item.size}</p>);
 
 	const itemQuantityElement = cart.map((item, i) => (
-		<p key={i}>{item.quantity}</p>
+		<p key={i}>
+			<button onClick={() => plusQuantityInCart(item.altId)} className="mr-2">
+				+
+			</button>
+			{item.quantity}
+			<button
+				onClick={() => minusQuantityInCart(item.altId)}
+				className="ml-2"
+				disabled={item.quantity < 2 ? true : false}
+			>
+				-
+			</button>
+		</p>
 	));
 
 	const itemPriceElement = cart.map((item, i) => (
