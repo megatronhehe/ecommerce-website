@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Cart from "./components/Cart";
 import ProductDetails from "./components/productDetails";
-// import Footer from "./components/Footer";
+import Checkout from "./components/Checkout";
 
 function App() {
 	return (
@@ -21,6 +21,7 @@ function App() {
 					<Route path="/categories" element={<Categories />} />
 					<Route path="/categories/:productId" element={<ProductDetails />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/checkout" element={<Checkout />} />
 				</Routes>
 			</main>
 
