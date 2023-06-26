@@ -91,11 +91,11 @@ const ProductDetails = () => {
 				<p className="ml-4" onClick={() => navigate(-1)}>
 					back
 				</p>
-				<div className="px-4 py-8 w-full lg:flex md:gap-4 h-screen">
-					<div className="bg-white shadow-md w-full flex justify-center items-center h-1/2">
+				<div className="px-4 py-8 w-full lg:flex md:gap-4 ">
+					<div className="bg-white shadow-md w-full flex justify-center items-center h-72">
 						+image here
 					</div>
-					<div className="bg-white shadow-md w-full h-full md:h-1/2 mt-8 lg:mt-0 p-4">
+					<div className="bg-white shadow-md w-full mt-8 lg:mt-0 p-4">
 						<h1 className="text-center tracking-widest text-rose-900 text-lg border-b border-rose-900 py-2">
 							{thisProduct.name}
 						</h1>
