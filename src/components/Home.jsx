@@ -2,21 +2,22 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
+import ProductCard from "./ProductCard";
+
 const Home = () => {
 	const { allProducts, setSelectedCategory } = useContext(Context);
 
-	const featuredItemsElement = allProducts.slice(0, 4).map((item, i) => (
-		<Link
-			to={`/categories/${item.id}`}
-			key={i}
-			className="w-full h-40 bg-white shadow-md flex justify-center items-end"
-		>
-			<div className="text-sm ">
-				<p>{item.name}</p>
-				<p>${item.price}</p>
-			</div>
-		</Link>
-	));
+	const featuredItemsElement = allProducts
+		.slice(0, 4)
+		.map((item, i) => (
+			<ProductCard
+				key={item.id}
+				id={item.id}
+				name={item.name}
+				price={item.price}
+				type={item.type}
+			/>
+		));
 
 	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
 
@@ -46,7 +47,7 @@ const Home = () => {
 						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
 							Featured Items
 						</h1>
-						<div className="px-4 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:gap-6">
+						<div className=" grid grid-cols-2 gap-3  xl:gap-6">
 							{featuredItemsElement}
 						</div>
 					</section>
@@ -55,7 +56,7 @@ const Home = () => {
 						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
 							Categories
 						</h1>
-						<div className="px-4 grid grid-cols-3 gap-3 xl:gap-10">
+						<div className=" grid grid-cols-3 gap-3 xl:gap-10">
 							{categoriesElement}
 						</div>
 					</section>

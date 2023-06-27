@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
+import ProductCard from "./ProductCard";
+
 const Categories = () => {
 	const { allProducts, selectedCategory, setSelectedCategory } =
 		useContext(Context);
@@ -11,29 +13,23 @@ const Categories = () => {
 	);
 
 	const filteredItemsElement = filteredItems.map((item, i) => (
-		<Link
-			to={`/categories/${item.id}`}
-			key={i}
-			className="w-full h-40 bg-white shadow-md flex justify-center items-end"
-		>
-			<div className="text-sm ">
-				<p>{item.name}</p>
-				<p>${item.price}</p>
-			</div>
-		</Link>
+		<ProductCard
+			key={item.id}
+			id={item.id}
+			name={item.name}
+			price={item.price}
+			type={item.type}
+		/>
 	));
 
 	const allItemsElement = allProducts.map((item, i) => (
-		<Link
-			to={`/categories/${item.id}`}
-			key={i}
-			className="w-full h-40 bg-white shadow-md flex justify-center items-end"
-		>
-			<div className="text-sm ">
-				<p>{item.name}</p>
-				<p>${item.price}</p>
-			</div>
-		</Link>
+		<ProductCard
+			key={item.id}
+			id={item.id}
+			name={item.name}
+			price={item.price}
+			type={item.type}
+		/>
 	));
 
 	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
@@ -71,7 +67,7 @@ const Categories = () => {
 						{categoriesElement}
 					</section>
 
-					<section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-4 gap-5 p-4">
+					<section className="grid grid-cols-2 md:grid-cols-3 gap-4 p-2">
 						{selectedCategory === "all"
 							? allItemsElement
 							: filteredItemsElement}
