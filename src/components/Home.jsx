@@ -45,20 +45,24 @@ const Home = () => {
 					+ add banner here
 				</section>
 
-				<div className="bg-gray-100 px-4 py-12 text-center">
+				<div className="bg-gray-100 px-2 py-12 text-center">
 					<section className="mb-12 xl:px-16">
-						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
-							Featured Items
-						</h1>
-						<div className=" grid grid-cols-2 gap-3  xl:gap-6">
+						<div className="px-2">
+							<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
+								Featured Items
+							</h1>
+						</div>
+						<div className=" grid grid-cols-2 gap-2  xl:gap-6">
 							{featuredItemsElement}
 						</div>
 					</section>
 
 					<section className="mb-12  xl:px-16">
-						<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
-							Categories
-						</h1>
+						<div className="px-2">
+							<h1 className="text-xl text-rose-900 mb-4 border-b border-rose-900 pb-2 xl:mb-12">
+								Categories
+							</h1>
+						</div>
 						<div className=" grid grid-cols-3 gap-3 xl:gap-10">
 							{categoriesElement}
 						</div>

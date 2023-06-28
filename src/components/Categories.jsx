@@ -22,6 +22,7 @@ const Categories = () => {
 			color={item.color}
 			size={item.size}
 			altId={item.altId}
+			quantity={item.quantity}
 		/>
 	));
 
@@ -35,6 +36,7 @@ const Categories = () => {
 			color={item.color}
 			size={item.size}
 			altId={item.altId}
+			quantity={item.quantity}
 		/>
 	));
 
@@ -56,10 +58,12 @@ const Categories = () => {
 		<div className="h-full sm:grid grid-cols-7 ">
 			<div className="bg-gray-200"></div>
 			<div className="bg-gray-100 w-full col-span-5">
-				<div className="px-4 py-12 text-center">
-					<h1 className="text-rose-900 text-xl mb-6 border-b border-rose-900 pb-4">
-						Categories
-					</h1>
+				<div className=" py-12 text-center">
+					<div className="px-4">
+						<h1 className="text-rose-900 text-xl mb-6 border-b border-rose-900 pb-4">
+							Categories
+						</h1>
+					</div>
 
 					<section className="flex flex-wrap justify-around items-center my-4">
 						<p
@@ -73,7 +77,7 @@ const Categories = () => {
 						{categoriesElement}
 					</section>
 
-					<section className="grid grid-cols-2 md:grid-cols-3 gap-4 p-2">
+					<section className="grid grid-cols-2 md:grid-cols-3 gap-2 p-2">
 						{selectedCategory === "all"
 							? allItemsElement
 							: filteredItemsElement}
