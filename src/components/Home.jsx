@@ -16,6 +16,9 @@ const Home = () => {
 				name={item.name}
 				price={item.price}
 				type={item.type}
+				color={item.color}
+				size={item.size}
+				altId={item.altId}
 			/>
 		));
 
