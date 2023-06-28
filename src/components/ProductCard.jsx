@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { productsArray } from "../data/data";
 
 const ProductCard = ({ name, type, price, id, color, size }) => {
-	const { cart, setCart } = useContext(Context);
+	const { plusQuantity, minusQuantity, chooseSize, chooseColor, addToCart } =
+		useContext(Context);
 
 	const thisProduct = productsArray.find((item) => item.id == id);
 
@@ -22,65 +23,22 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 		setIsToggledMore((prev) => !prev);
 	};
 
-	const setNewAltId = () => {
-		setThisProductData((prev) => ({
-			...prev,
-			altId: `${prev.id}${prev.type}${prev.size}${prev.color}`,
-		}));
-	};
-
-	const chooseColor = (selectedColor) => {
-		setThisProductData((prev) => ({ ...prev, color: selectedColor }));
-		setNewAltId();
-	};
-
-	const chooseSize = (selectedSize) => {
-		setThisProductData((prev) => ({ ...prev, size: selectedSize }));
-		setNewAltId();
-	};
-
-	const plusQuantity = () => {
-		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity + 1 }));
-	};
-
-	const minusQuantity = () => {
-		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
-	};
-
-	const addToCart = () => {
-		setCart((prev) => {
-			const isExistInCart = prev.some(
-				(item) => item.altId === thisProductData.altId
-			);
-			if (isExistInCart) {
-				return prev.map((item) =>
-					item.altId === thisProductData.altId
-						? { ...item, quantity: item.quantity + thisProductData.quantity }
-						: item
-				);
-			} else {
-				return [...prev, thisProductData];
-			}
-		});
-	};
-
 	const colorElement = color.map((item, i) => (
 		<li
 			key={i}
-			onClick={() => {
-				chooseColor(item);
-				console.log(thisProductData.color);
-			}}
-			className={`bg-${item} rounded-full w-8 h-8 text-white shadow-md`}
+			onClick={() => chooseColor(item, setThisProductData)}
+			className={`bg-${item} rounded-full w-8 h-8 text-white shadow-md p-1`}
 		>
-			{thisProductData.color === item && "v"}
+			{thisProductData.color === item && (
+				<div className="w-full h-full border-2 border-gray-300 rounded-full"></div>
+			)}
 		</li>
 	));
 
 	const sizeElement = size.map((item, i) => (
 		<li
 			key={i}
-			onClick={() => chooseSize(item)}
+			onClick={() => chooseSize(item, setThisProductData)}
 			className={`px-2 py-1 rounded-lg ${
 				thisProductData.size === item && "border border-rose-900"
 			}`}
@@ -109,7 +67,7 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 					</div>
 				</Link>
 
-				<p className="absolute top-0 left-0 p-2 text-black  text-md">
+				<p className="absolute top-0 left-0 p-2 text-black text-md">
 					${price - 0.01}
 				</p>
 				<button
@@ -135,16 +93,18 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 					<div className="flex items-center justify-center gap-2">
 						<div className="flex justify-around w-2/3">
 							<button
-								onClick={minusQuantity}
+								onClick={() => minusQuantity(setThisProductData)}
 								disabled={thisProductData.quantity < 2}
 							>
 								-
 							</button>
 							<p>{thisProductData.quantity}</p>
-							<button onClick={plusQuantity}>+</button>
+							<button onClick={() => plusQuantity(setThisProductData)}>
+								+
+							</button>
 						</div>
 						<button
-							onClick={addToCart}
+							onClick={() => addToCart(thisProductData)}
 							className="w-full py-1 border rounded-lg border-rose-900"
 						>
 							add to cart +

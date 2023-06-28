@@ -5,7 +5,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { productsArray } from "../data/data";
 
 const ProductDetails = () => {
-	const { setCart, cart, countCart } = useContext(Context);
+	const {
+		countCart,
+		plusQuantity,
+		minusQuantity,
+		chooseSize,
+		chooseColor,
+		addToCart,
+	} = useContext(Context);
 	const { productId } = useParams();
 	const navigate = useNavigate();
 
@@ -18,52 +25,10 @@ const ProductDetails = () => {
 		altId: `${thisProduct.id}${thisProduct.type}${thisProduct.size[0]}${thisProduct.color[0]}`,
 	});
 
-	const setNewAltId = () => {
-		setThisProductData((prev) => ({
-			...prev,
-			altId: `${prev.id}${prev.type}${prev.size}${prev.color}`,
-		}));
-	};
-
-	const chooseSize = (selectedSize) => {
-		setThisProductData((prev) => ({ ...prev, size: selectedSize }));
-		setNewAltId();
-	};
-
-	const chooseColor = (selectedColor) => {
-		setThisProductData((prev) => ({ ...prev, color: selectedColor }));
-		setNewAltId();
-	};
-
-	const plusQuantity = () => {
-		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity + 1 }));
-	};
-
-	const minusQuantity = () => {
-		setThisProductData((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
-	};
-
-	const addToCart = () => {
-		setCart((prev) => {
-			const isExistInCart = prev.some(
-				(item) => item.altId === thisProductData.altId
-			);
-			if (isExistInCart) {
-				return prev.map((item) =>
-					item.altId === thisProductData.altId
-						? { ...item, quantity: item.quantity + thisProductData.quantity }
-						: item
-				);
-			} else {
-				return [...prev, thisProductData];
-			}
-		});
-	};
-
 	const sizeElement = thisProduct.size.map((item, i) => (
 		<p
 			key={i}
-			onClick={() => chooseSize(item)}
+			onClick={() => chooseSize(item, setThisProductData)}
 			className={`border border-rose-900 px-4 py-1 rounded-md hover:bg-rose-900 hover:text-rose-100 ${
 				thisProductData.size === item && "bg-rose-900  text-rose-100"
 			}`}
@@ -75,12 +40,12 @@ const ProductDetails = () => {
 	const colorElement = thisProduct.color.map((item, i) => (
 		<p
 			key={i}
-			onClick={() => chooseColor(item)}
-			className={`border border-rose-900 px-4 py-1 rounded-md hover:bg-rose-900 hover:text-rose-100 ${
-				thisProductData.color === item && "bg-rose-900 text-rose-100"
-			}`}
+			onClick={() => chooseColor(item, setThisProductData)}
+			className={`bg-${item} rounded-full w-8 h-8 text-white shadow-md p-1`}
 		>
-			{item}
+			{thisProductData.color === item && (
+				<div className="w-full h-full border-2 border-gray-300 rounded-full"></div>
+			)}
 		</p>
 	));
 
@@ -108,14 +73,14 @@ const ProductDetails = () => {
 						<div className="flex items-center gap-5 mt-4">
 							quantity :
 							<button
-								onClick={plusQuantity}
+								onClick={() => plusQuantity(setThisProductData)}
 								className="flex items-center justify-center w-8 h-8 text-xl border rounded-full text-rose-900 border-rose-900 hover:bg-rose-900 hover:text-rose-100"
 							>
 								+
 							</button>
 							<p className="">{thisProductData.quantity}</p>
 							<button
-								onClick={minusQuantity}
+								onClick={() => minusQuantity(setThisProductData)}
 								className={`w-8 h-8 rounded-full text-rose-900 
                             border border-rose-900 flex justify-center items-center text-xl hover:bg-rose-900 hover:text-rose-100`}
 								disabled={thisProductData.quantity < 2 ? true : false}
@@ -125,7 +90,7 @@ const ProductDetails = () => {
 							<div className="flex gap-6"></div>
 						</div>
 						<p
-							onClick={addToCart}
+							onClick={() => addToCart(thisProductData)}
 							className="py-1 mt-6 text-lg text-center text-yellow-300 rounded-lg shadow-md bg-rose-900"
 						>
 							+ add to cart
