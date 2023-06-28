@@ -55,17 +55,17 @@ const Categories = () => {
 	));
 
 	return (
-		<div className="h-full sm:grid grid-cols-7 ">
+		<div className="h-full grid-cols-7 sm:grid ">
 			<div className="bg-gray-200"></div>
-			<div className="bg-gray-100 w-full col-span-5">
-				<div className=" py-12 text-center">
+			<div className="w-full col-span-5 bg-gray-100">
+				<div className="py-12 text-center ">
 					<div className="px-4">
-						<h1 className="text-rose-900 text-xl mb-6 border-b border-rose-900 pb-4">
+						<h1 className="pb-4 mb-6 text-xl border-b text-rose-900 border-rose-900">
 							Categories
 						</h1>
 					</div>
 
-					<section className="flex flex-wrap justify-around items-center my-4">
+					<section className="flex flex-wrap items-center justify-around my-4">
 						<p
 							onClick={() => setSelectedCategory("all")}
 							className={`px-4 py-2 rounded-full border  border-rose-900 hover:bg-rose-900 hover:text-rose-100 cursor-pointer mt-3 ${
@@ -77,7 +77,7 @@ const Categories = () => {
 						{categoriesElement}
 					</section>
 
-					<section className="grid grid-cols-2 md:grid-cols-3 gap-2 p-2">
+					<section className="grid grid-cols-2 gap-2 p-2 lg:grid-cols-3">
 						{selectedCategory === "all"
 							? allItemsElement
 							: filteredItemsElement}

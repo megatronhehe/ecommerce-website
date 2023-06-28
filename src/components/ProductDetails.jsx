@@ -85,18 +85,18 @@ const ProductDetails = () => {
 	));
 
 	return (
-		<div className="h-full sm:grid grid-cols-7 ">
+		<div className="h-full grid-cols-7 sm:grid ">
 			<div className="bg-gray-200"></div>
-			<div className="bg-gray-100 w-full col-span-5 px-2 pt-4">
+			<div className="w-full col-span-5 px-2 pt-4 bg-gray-100">
 				<p className="ml-4" onClick={() => navigate(-1)}>
 					back
 				</p>
-				<div className="px-4 py-8 w-full lg:flex md:gap-4 ">
-					<div className="bg-white shadow-md w-full flex justify-center items-center h-72">
+				<div className="w-full px-4 py-8 lg:flex md:gap-4 ">
+					<div className="flex items-center justify-center w-full bg-white shadow-md h-72">
 						+image here
 					</div>
-					<div className="bg-white shadow-md w-full mt-8 lg:mt-0 p-4">
-						<h1 className="text-center tracking-widest text-rose-900 text-lg border-b border-rose-900 py-2">
+					<div className="w-full p-4 mt-8 bg-white shadow-md lg:mt-0">
+						<h1 className="py-2 text-lg tracking-widest text-center border-b text-rose-900 border-rose-900">
 							{thisProduct.name}
 						</h1>
 						<p className="mt-4 text-xl text-center"> ${thisProduct.price}</p>
@@ -105,11 +105,11 @@ const ProductDetails = () => {
 						<div className="flex gap-3">{sizeElement}</div>
 						<p className="mt-4">color :</p>
 						<div className="flex gap-3">{colorElement}</div>
-						<div className="flex items-center mt-4 gap-5">
+						<div className="flex items-center gap-5 mt-4">
 							quantity :
 							<button
 								onClick={plusQuantity}
-								className="w-8 h-8 rounded-full text-rose-900 border border-rose-900 flex justify-center items-center text-xl hover:bg-rose-900 hover:text-rose-100"
+								className="flex items-center justify-center w-8 h-8 text-xl border rounded-full text-rose-900 border-rose-900 hover:bg-rose-900 hover:text-rose-100"
 							>
 								+
 							</button>
@@ -126,13 +126,13 @@ const ProductDetails = () => {
 						</div>
 						<p
 							onClick={addToCart}
-							className="text-center mt-6 bg-rose-900 text-yellow-300 text-lg rounded-lg py-1 shadow-md"
+							className="py-1 mt-6 text-lg text-center text-yellow-300 rounded-lg shadow-md bg-rose-900"
 						>
 							+ add to cart
 						</p>
 						{countCart() > 0 && (
 							<Link to="/cart">
-								<p className="text-center mt-4 text-sm text-gray-400">
+								<p className="mt-4 text-sm text-center text-gray-400">
 									you have <span className="font-bold">{countCart()}</span>{" "}
 									{countCart() > 1 ? "items" : "item"} in your cart, click to
 									check{" "}

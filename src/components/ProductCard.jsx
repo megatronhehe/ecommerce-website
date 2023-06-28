@@ -90,12 +90,12 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 	));
 
 	return (
-		<div className="flex flex-col text-center mb-4">
+		<div className="flex flex-col mb-4 text-center">
 			<div className="relative">
 				<div className="w-full">
 					<Link to={`/categories/${id}`}>
 						<img
-							className="w-full object-cover rounded-xl"
+							className="object-cover w-full rounded-xl"
 							src={image}
 							alt="Image"
 						/>
@@ -103,18 +103,18 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 				</div>
 
 				<Link to={`/categories${id}`}>
-					<div className="w-full flex flex-col">
+					<div className="flex flex-col w-full">
 						<h2 className="text-rose-900">{name}</h2>
 						<p className="text-sm text-gray-400">{type}</p>
 					</div>
 				</Link>
 
-				<p className=" text-md absolute top-0 left-0 p-2 text-black">
+				<p className="absolute top-0 left-0 p-2 text-black  text-md">
 					${price - 0.01}
 				</p>
 				<button
 					onClick={toggle}
-					className="bg-white absolute w-1/5 h-1/6 top-2 right-2 p-2 text-black rounded-lg"
+					className="absolute w-1/5 p-2 text-black bg-white rounded-lg h-1/6 top-2 right-2"
 				>
 					{isToggledMore ? "x" : "+"}
 				</button>
@@ -132,7 +132,7 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 						{sizeElement}
 					</ul>
 
-					<div className="flex justify-center items-center gap-2">
+					<div className="flex items-center justify-center gap-2">
 						<div className="flex justify-around w-2/3">
 							<button
 								onClick={minusQuantity}
@@ -145,7 +145,7 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 						</div>
 						<button
 							onClick={addToCart}
-							className="border border-rose-900 w-full rounded-lg py-1"
+							className="w-full py-1 border rounded-lg border-rose-900"
 						>
 							add to cart +
 						</button>

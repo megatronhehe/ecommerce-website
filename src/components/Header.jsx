@@ -6,11 +6,11 @@ const Header = () => {
 	const { cart, countCart } = useContext(Context);
 
 	return (
-		<nav className="text-rose-200 bg-rose-900 px-12  text-center pt-3 sm:flex justify-between items-center sm:pt-0 ">
+		<nav className="items-center justify-between px-12 pt-3 text-center text-rose-200 bg-rose-900 sm:flex sm:pt-0 ">
 			<Link to="/">
 				<h1 className="text-3xl tracking-widest">whatevs</h1>
 			</Link>
-			<ul className="py-8 flex justify-between w-full sm:w-64">
+			<ul className="flex justify-between w-full py-8 sm:w-64">
 				<Link to="/">
 					<li>Home</li>
 				</Link>
@@ -21,7 +21,7 @@ const Header = () => {
 					<li>
 						Cart
 						{cart.length > 0 && (
-							<span className="bg-white text-rose-900 ml-2 px-3 rounded-full font-bold text-sm">
+							<span className="px-3 ml-2 text-sm font-bold bg-white rounded-full text-rose-900">
 								{countCart()}
 							</span>
 						)}
