@@ -4,6 +4,8 @@ import { Context } from "../context/Context";
 import { useParams, useNavigate } from "react-router-dom";
 import { productsArray } from "../data/data";
 
+import image from "../assets/default-img.png";
+
 const ProductDetails = () => {
 	const {
 		countCart,
@@ -50,17 +52,19 @@ const ProductDetails = () => {
 	));
 
 	return (
-		<div className="h-full grid-cols-7 sm:grid ">
-			<div className="bg-gray-200"></div>
-			<div className="w-full col-span-5 px-2 pt-4 bg-gray-100">
+		<div className="grid-cols-7  lg:grid lg:grid-cols-9">
+			<div></div>
+
+			<div className="w-full col-span-7 px-2 pt-4 shadow-lg ">
 				<p className="ml-4" onClick={() => navigate(-1)}>
 					back
 				</p>
-				<div className="w-full px-4 py-8 lg:flex md:gap-4 ">
-					<div className="flex items-center justify-center w-full bg-white shadow-md h-72">
-						+image here
+				<div className="gap-8 px-4 py-8 sm:flex">
+					<div className="">
+						<img className="" src={image} />
 					</div>
-					<div className="w-full p-4 mt-8 bg-white shadow-md lg:mt-0">
+
+					<div className="w-full p-4 bg-white shadow-md md:w-1/2">
 						<h1 className="py-2 text-lg tracking-widest text-center border-b text-rose-900 border-rose-900">
 							{thisProduct.name}
 						</h1>
@@ -107,7 +111,8 @@ const ProductDetails = () => {
 					</div>
 				</div>
 			</div>
-			<div className="w-full bg-gray-200"></div>
+
+			<div></div>
 		</div>
 	);
 };

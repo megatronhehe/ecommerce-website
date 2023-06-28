@@ -6,7 +6,7 @@ const Header = () => {
 	const { cart, countCart } = useContext(Context);
 
 	return (
-		<nav className="items-center justify-between px-12 pt-3 text-center text-rose-200 bg-rose-900 sm:flex sm:pt-0 ">
+		<nav className="items-center justify-between px-6 pt-3 text-center text-rose-200 bg-rose-900 sm:flex sm:pt-0 ">
 			{/* ignore this ul, theyre here so the color can render*/}
 			<ul className="hidden">
 				<li className="bg-rose-900"></li>
@@ -18,7 +18,7 @@ const Header = () => {
 			<Link to="/">
 				<h1 className="text-3xl tracking-widest">whatevs</h1>
 			</Link>
-			<ul className="flex justify-between w-full py-8 sm:w-64">
+			<ul className="flex items-center justify-between w-full py-8 sm:w-64">
 				<Link to="/">
 					<li>Home</li>
 				</Link>
@@ -26,13 +26,11 @@ const Header = () => {
 					<li>Categories</li>
 				</Link>
 				<Link to="/cart">
-					<li>
-						Cart
-						{cart.length > 0 && (
-							<span className="px-3 ml-2 text-sm font-bold bg-white rounded-full text-rose-900">
-								{countCart()}
-							</span>
-						)}
+					<li className="flex justify-between w-24 p-2 border rounded-lg border-rose-100">
+						<p className="pr-6 border-r border-rose-100">Cart</p>
+						<p className="mr-1 font-bold">
+							{cart.length > 0 ? countCart() : 0}
+						</p>
 					</li>
 				</Link>
 			</ul>

@@ -5,17 +5,18 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Cart from "./components/Cart";
-import ProductDetails from "./components/productDetails";
+import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Checkout";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
-		<div>
+		<div className="">
 			<header>
 				<Header />
 			</header>
 
-			<main className="h-screen">
+			<main>
 				<Routes>
 					<Route exact path="/" element={<Home />} />
 					<Route path="/categories" element={<Categories />} />
@@ -25,7 +26,9 @@ function App() {
 				</Routes>
 			</main>
 
-			<footer className="">{/* <Footer /> */}</footer>
+			<footer className="mt-auto">
+				<Footer />
+			</footer>
 		</div>
 	);
 }

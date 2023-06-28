@@ -55,14 +55,14 @@ const Cart = () => {
 						<p className="mb-2">${item.price * item.quantity}</p>
 						<div className="flex items-center justify-center gap-2">
 							<button
-								className="px-1 rounded-full  text-rose-900"
+								className="px-1 rounded-full text-rose-900"
 								onClick={() => plusQuantityInCart(item.altId)}
 							>
 								+
 							</button>
 							{item.quantity}
 							<button
-								className="px-1 rounded-full  text-rose-900"
+								className="px-1 rounded-full text-rose-900"
 								onClick={() => minusQuantityInCart(item.altId)}
 								disabled={item.quantity < 2 ? true : false}
 							>
@@ -77,12 +77,12 @@ const Cart = () => {
 	));
 
 	return (
-		<div className="h-full grid-cols-7 sm:grid ">
-			<div className="bg-gray-200"></div>
-			<div className="w-full col-span-5 bg-gray-100">
+		<div className="h-screen grid-cols-7 sm:grid">
+			<div></div>
+			<div className="h-full col-span-5 shadow-lg">
 				<div className="px-4 py-12 text-center">
 					<div className="flex items-end justify-between pb-4 mb-6 text-sm border-b border-rose-900">
-						<h1 onClick={() => navigate(-1)}>Back</h1>
+						<button onClick={() => navigate(-1)}>Back</button>
 						<h1 className="text-xl text-rose-900">Cart</h1>
 						<Link to="/checkout">
 							<h1 className="px-3 py-1 rounded-lg bg-rose-900 text-rose-100">
@@ -111,7 +111,7 @@ const Cart = () => {
 					</div>
 				</div>
 			</div>
-			<div className="w-full bg-gray-200"></div>
+			<div></div>
 		</div>
 	);
 };

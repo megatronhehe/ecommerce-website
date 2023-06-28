@@ -56,8 +56,8 @@ const Categories = () => {
 
 	return (
 		<div className="h-full grid-cols-7 sm:grid ">
-			<div className="bg-gray-200"></div>
-			<div className="w-full col-span-5 bg-gray-100">
+			<div></div>
+			<div className="w-full col-span-5 shadow-lg">
 				<div className="py-12 text-center ">
 					<div className="px-4">
 						<h1 className="pb-4 mb-6 text-xl border-b text-rose-900 border-rose-900">
@@ -77,14 +77,14 @@ const Categories = () => {
 						{categoriesElement}
 					</section>
 
-					<section className="grid grid-cols-2 gap-2 p-2 lg:grid-cols-3">
+					<section className="grid grid-cols-2 gap-2 p-2 xl:grid-cols-4 md:grid-cols-3 ">
 						{selectedCategory === "all"
 							? allItemsElement
 							: filteredItemsElement}
 					</section>
 				</div>
 			</div>
-			<div className="w-full bg-gray-200"></div>
+			<div></div>
 		</div>
 	);
 };
