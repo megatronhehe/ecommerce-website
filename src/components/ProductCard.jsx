@@ -78,7 +78,7 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 				</button>
 
 				<div
-					className={`opacity-95 absolute flex flex-col gap-2 bottom-0 bg-gray-100 w-full rounded-xl shadow-sm p-2 text-sm ${
+					className={`opacity-95 absolute flex flex-col gap-2 bottom-0 bg-white w-full rounded-xl shadow-md p-2 text-sm ${
 						!isToggledMore && "hidden"
 					}`}
 				>
@@ -91,7 +91,7 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 					</ul>
 
 					<div className="flex items-center justify-center gap-2">
-						<div className="flex justify-around w-2/3">
+						<div className="flex justify-around w-4/5">
 							<button
 								onClick={() => minusQuantity(setThisProductData)}
 								disabled={thisProductData.quantity < 2}
@@ -107,7 +107,7 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 							onClick={() => addToCart(thisProductData)}
 							className="w-full py-1 border rounded-lg border-rose-900"
 						>
-							add to cart +
+							+ cart
 						</button>
 					</div>
 				</div>

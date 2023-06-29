@@ -43,7 +43,7 @@ const Categories = () => {
 	const categoriesArray = [...new Set(allProducts.map((item) => item.type))];
 
 	const categoriesElement = categoriesArray.map((item, i) => (
-		<p
+		<button
 			key={i}
 			onClick={() => setSelectedCategory(item)}
 			className={`px-4 py-2 rounded-full border  border-rose-900 hover:bg-rose-900 hover:text-rose-100 cursor-pointer mt-3 ${
@@ -51,7 +51,7 @@ const Categories = () => {
 			}`}
 		>
 			{item}
-		</p>
+		</button>
 	));
 
 	return (

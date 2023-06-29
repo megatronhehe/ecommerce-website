@@ -52,12 +52,12 @@ const ProductDetails = () => {
 	));
 
 	return (
-		<div className="grid-cols-7  lg:grid lg:grid-cols-9">
+		<div className="grid-cols-7 lg:grid lg:grid-cols-9">
 			<div></div>
 
 			<div className="w-full col-span-7 px-2 pt-4 shadow-lg ">
 				<p className="ml-4" onClick={() => navigate(-1)}>
-					back
+					Back
 				</p>
 				<div className="gap-8 px-4 py-8 sm:flex">
 					<div className="">
@@ -95,7 +95,7 @@ const ProductDetails = () => {
 						</div>
 						<p
 							onClick={() => addToCart(thisProductData)}
-							className="py-1 mt-6 text-lg text-center text-yellow-300 rounded-lg shadow-md bg-rose-900"
+							className="py-1 mt-6 text-lg text-center rounded-lg shadow-md text-rose-100 bg-rose-900"
 						>
 							+ add to cart
 						</p>

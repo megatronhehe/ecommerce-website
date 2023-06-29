@@ -23,7 +23,7 @@ const Footer = () => {
 					</Link>
 				</ul>
 			</div>
-			<div className="flex flex-col items-center justify-center h-full text-sm">
+			<div className="flex flex-col items-center justify-center h-full text-sm text-center">
 				<h1 className="tracking-widest text-md">whatevs</h1>
 				<p className="">whatever works to be honest</p>
 				<a
