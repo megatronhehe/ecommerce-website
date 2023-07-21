@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ setToggleCart }) => {
 	const { cart, countCart } = useContext(Context);
 
 	return (
@@ -25,14 +25,20 @@ const Header = () => {
 				<Link to="/categories">
 					<li>Categories</li>
 				</Link>
-				<Link to="/cart">
-					<li className="flex justify-between w-24 p-2 border rounded-lg border-rose-100">
+
+				<li>
+					<button
+						className="flex justify-between w-24 p-2 border rounded-lg border-rose-100"
+						onClick={() => {
+							setToggleCart((prev) => !prev);
+						}}
+					>
 						<p className="pr-6 border-r border-rose-100">Cart</p>
 						<p className="mr-1 font-bold">
 							{cart.length > 0 ? countCart() : 0}
 						</p>
-					</li>
-				</Link>
+					</button>
+				</li>
 			</ul>
 		</nav>
 	);

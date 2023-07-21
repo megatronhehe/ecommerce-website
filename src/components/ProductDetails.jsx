@@ -1,20 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 import { useParams, useNavigate } from "react-router-dom";
 import { productsArray } from "../data/data";
 
 import image from "../assets/default-img.png";
 
-const ProductDetails = () => {
-	const {
-		countCart,
-		plusQuantity,
-		minusQuantity,
-		chooseSize,
-		chooseColor,
-		addToCart,
-	} = useContext(Context);
+const ProductDetails = ({ setToggleCart }) => {
+	const { plusQuantity, minusQuantity, chooseSize, chooseColor, addToCart } =
+		useContext(Context);
 	const { productId } = useParams();
 	const navigate = useNavigate();
 
@@ -66,7 +59,11 @@ const ProductDetails = () => {
 				<div className="mt-4 text-sm sm:mt-0 sm:w-1/2 ">
 					<div className="text-xl sm:text-2xl">
 						<h1>{thisProduct.name}</h1>
-						<p className=""> ${thisProduct.price}</p>
+						<p className="">
+							{" "}
+							${thisProduct.price}
+							<span className="text-xs">.00</span>
+						</p>
 					</div>
 
 					<p className="mt-4">{thisProduct.type}</p>
@@ -102,23 +99,15 @@ const ProductDetails = () => {
 						</div>
 					</div>
 
-					<div>
-						<button
-							onClick={() => addToCart(thisProductData)}
-							className="w-full py-4 mt-6 text-sm text-center rounded-lg shadow-md text-rose-100 bg-rose-900"
-						>
-							+ add to cart
-						</button>
-						{countCart() > 0 && (
-							<Link to="/cart">
-								<p className="mt-4 text-sm text-center text-gray-400">
-									you have <span className="font-bold">{countCart()}</span>{" "}
-									{countCart() > 1 ? "items" : "item"} in your cart, click to
-									check{" "}
-								</p>
-							</Link>
-						)}
-					</div>
+					<button
+						onClick={() => {
+							addToCart(thisProductData);
+							setToggleCart(true);
+						}}
+						className="w-full py-4 mt-6 text-sm text-center rounded-lg shadow-md text-rose-100 bg-rose-900"
+					>
+						+ add to cart
+					</button>
 				</div>
 			</section>
 		</>

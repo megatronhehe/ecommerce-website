@@ -8,12 +8,15 @@ import Cart from "./components/Cart";
 import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Checkout";
 import Footer from "./components/Footer";
+import CartPopout from "./components/CartPopout";
 
 function App() {
+	const [toggleCart, setToggleCart] = useState(false);
+
 	return (
 		<>
 			<header>
-				<Header />
+				<Header setToggleCart={setToggleCart} />
 			</header>
 
 			<main className="flex justify-center">
@@ -21,7 +24,10 @@ function App() {
 					<Routes>
 						<Route exact path="/" element={<Home />} />
 						<Route path="/categories" element={<Categories />} />
-						<Route path="/categories/:productId" element={<ProductDetails />} />
+						<Route
+							path="/categories/:productId"
+							element={<ProductDetails setToggleCart={setToggleCart} />}
+						/>
 						<Route path="/cart" element={<Cart />} />
 						<Route path="/checkout" element={<Checkout />} />
 					</Routes>
@@ -29,9 +35,7 @@ function App() {
 			</main>
 
 			{/* pop out cart */}
-			{/* <section className="fixed top-0 right-0 w-3/4 h-screen bg-gray-400">
-				<div className="flex flex-col items-center justify-center w-full h-full"></div>
-			</section> */}
+			{toggleCart && <CartPopout setToggleCart={setToggleCart} />}
 
 			<footer className="mt-24 ">
 				<Footer />

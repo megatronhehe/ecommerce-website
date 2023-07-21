@@ -68,7 +68,8 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 				</Link>
 
 				<p className="absolute top-0 left-0 p-2 text-black text-md">
-					${price - 0.01}
+					${price}
+					<span className="text-xs">.00</span>
 				</p>
 				<button
 					onClick={toggle}
