@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 
 import ProductCard from "./ProductCard";
+
+import { PiDiamondsFourFill } from "react-icons/pi";
+import { BiCategoryAlt } from "react-icons/bi";
 
 const Categories = () => {
 	const { allProducts, selectedCategory, setSelectedCategory } =
@@ -44,8 +46,12 @@ const Categories = () => {
 	return (
 		<>
 			<section>
-				<h1 className="px-0 pb-4 mx-2 my-8 text-2xl border-b">Categories</h1>
+				<h1 className="flex items-center gap-2 px-0 pb-4 mx-2 my-8 text-2xl border-b">
+					<PiDiamondsFourFill className="text-base text-rose-700" />
+					Categories
+				</h1>
 				<div className="flex flex-wrap gap-2 mx-2 mb-8">
+					<BiCategoryAlt className="pr-2 mr-4 text-4xl border-r text-rose-700" />
 					<button
 						onClick={() => setSelectedCategory("all")}
 						className={`px-4 py-2 text-sm border  border-rose-900 hover:bg-rose-900 hover:text-rose-100 cursor-pointer  ${

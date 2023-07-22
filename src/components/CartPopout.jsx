@@ -4,6 +4,9 @@ import { Context } from "../context/Context";
 
 import image from "../assets/default-img.png";
 
+import { BiChevronRight } from "react-icons/bi";
+import { BsFillCartXFill } from "react-icons/bs";
+
 const CartPopout = ({ setToggleCart }) => {
 	const { cart, setCart, countCart } = useContext(Context);
 
@@ -72,10 +75,10 @@ const CartPopout = ({ setToggleCart }) => {
 						</button>
 					</div>
 					<button
-						className="w-8 h-8 text-white bg-red-400 rounded-full"
+						className="text-2xl text-rose-900"
 						onClick={() => deleteItemInCart(item.altId)}
 					>
-						x
+						<BsFillCartXFill />
 					</button>
 				</div>
 			</div>
@@ -100,7 +103,7 @@ const CartPopout = ({ setToggleCart }) => {
 						onClick={() => setToggleCart((prev) => !prev)}
 						className="flex items-center mb-4"
 					>
-						{"> Cart "}
+						<BiChevronRight className="text-xl" /> Cart
 						<span className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-rose-100 bg-rose-900">
 							{countCart()}
 						</span>

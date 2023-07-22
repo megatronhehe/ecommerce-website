@@ -5,6 +5,9 @@ import { productsArray } from "../data/data";
 
 import image from "../assets/default-img.png";
 
+import { BiChevronLeft, BiPlus, BiMinus } from "react-icons/bi";
+import { BsCartPlus } from "react-icons/bs";
+
 const ProductDetails = ({ setToggleCart }) => {
 	const { plusQuantity, minusQuantity, chooseSize, chooseColor, addToCart } =
 		useContext(Context);
@@ -47,9 +50,10 @@ const ProductDetails = ({ setToggleCart }) => {
 	return (
 		<>
 			<button
-				className="top-0 pb-4 my-8 ml-2 text-gray-400"
+				className="top-0 flex items-center pb-4 my-8 ml-2 text-gray-600"
 				onClick={() => navigate(-1)}
 			>
+				<BiChevronLeft className="text-xl" />
 				Back
 			</button>
 			<section className="relative p-2 sm:flex sm:gap-4 md:gap-8">
@@ -85,7 +89,7 @@ const ProductDetails = ({ setToggleCart }) => {
 								onClick={() => plusQuantity(setThisProductData)}
 								className="flex items-center justify-center w-8 h-8 text-xl border rounded-full text-rose-900 border-rose-900 hover:bg-rose-900 hover:text-rose-100"
 							>
-								+
+								<BiPlus />
 							</button>
 							<div>{thisProductData.quantity}</div>
 							<button
@@ -94,7 +98,7 @@ const ProductDetails = ({ setToggleCart }) => {
                             border border-rose-900 flex justify-center items-center text-xl hover:bg-rose-900 hover:text-rose-100`}
 								disabled={thisProductData.quantity < 2 ? true : false}
 							>
-								-
+								<BiMinus />
 							</button>
 						</div>
 					</div>
@@ -104,9 +108,9 @@ const ProductDetails = ({ setToggleCart }) => {
 							addToCart(thisProductData);
 							setToggleCart(true);
 						}}
-						className="w-full py-4 mt-6 text-sm text-center rounded-lg shadow-md text-rose-100 bg-rose-900"
+						className="flex items-center justify-center w-full gap-2 py-4 mt-6 text-sm rounded-lg shadow-md text-rose-100 bg-rose-900"
 					>
-						+ add to cart
+						<BsCartPlus className="text-2xl" /> add to cart
 					</button>
 				</div>
 			</section>

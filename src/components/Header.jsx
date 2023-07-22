@@ -2,6 +2,11 @@ import React, { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import { Link } from "react-router-dom";
 
+import { TfiShoppingCartFull, TfiShoppingCart } from "react-icons/tfi";
+import { IoShirt, IoHome } from "react-icons/io5";
+import { BiCategoryAlt } from "react-icons/bi";
+import { PiDiamondsFourFill } from "react-icons/pi";
+
 const Header = ({ setToggleCart }) => {
 	const { cart, countCart } = useContext(Context);
 
@@ -16,27 +21,38 @@ const Header = ({ setToggleCart }) => {
 			</ul>
 
 			<Link to="/">
-				<h1 className="text-3xl tracking-widest">whatevs</h1>
+				<h1 className="flex items-center gap-2 text-3xl tracking-widest">
+					whatevs
+					<PiDiamondsFourFill className="text-xl" />
+				</h1>
 			</Link>
-			<ul className="flex items-center justify-between w-full py-8 sm:w-64">
+			<ul className="flex items-center justify-between w-full py-8 text-3xl sm:w-64">
 				<Link to="/">
-					<li>Home</li>
+					<li>
+						<IoHome />
+					</li>
 				</Link>
 				<Link to="/categories">
-					<li>Categories</li>
+					<li className="flex">
+						<IoShirt />
+						<BiCategoryAlt className="text-xl" />
+					</li>
 				</Link>
 
 				<li>
 					<button
-						className="flex justify-between w-24 p-2 border rounded-lg border-rose-100"
+						className="relative flex items-center rounded-lg"
 						onClick={() => {
 							setToggleCart((prev) => !prev);
 						}}
 					>
-						<p className="pr-6 border-r border-rose-100">Cart</p>
-						<p className="mr-1 font-bold">
-							{cart.length > 0 ? countCart() : 0}
-						</p>
+						{cart.length > 0 ? <TfiShoppingCartFull /> : <TfiShoppingCart />}
+
+						{cart.length > 0 && (
+							<p className="absolute flex items-center justify-center w-5 h-5 text-sm font-bold rounded-full -right-3 -top-5 bg-rose-100 text-rose-700">
+								{cart.length > 0 ? countCart() : 0}
+							</p>
+						)}
 					</button>
 				</li>
 			</ul>

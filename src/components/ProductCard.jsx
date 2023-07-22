@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import { productsArray } from "../data/data";
 
+import { BsPlusLg, BsXLg, BsCartPlus } from "react-icons/bs";
+
 const ProductCard = ({ name, type, price, id, color, size }) => {
 	const { plusQuantity, minusQuantity, chooseSize, chooseColor, addToCart } =
 		useContext(Context);
@@ -73,9 +75,9 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 				</p>
 				<button
 					onClick={toggle}
-					className="absolute w-1/5 p-2 text-black bg-white rounded-lg h-1/6 top-2 right-2"
+					className="absolute flex items-center justify-center w-1/5 p-2 text-black bg-white rounded-lg h-1/6 top-2 right-2"
 				>
-					{isToggledMore ? "x" : "+"}
+					{isToggledMore ? <BsXLg /> : <BsPlusLg />}
 				</button>
 
 				<div
@@ -106,9 +108,9 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 						</div>
 						<button
 							onClick={() => addToCart(thisProductData)}
-							className="w-full py-1 border rounded-lg border-rose-900"
+							className="flex items-center justify-center gap-2 p-3 text-sm rounded-md bg-rose-900 text-rose-100"
 						>
-							+ cart
+							<BsCartPlus className="text-xl" /> +cart
 						</button>
 					</div>
 				</div>
