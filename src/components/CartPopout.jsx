@@ -88,44 +88,50 @@ const CartPopout = ({ setToggleCart }) => {
 
 	return (
 		<>
-			<section className="fixed top-0 right-0 h-screen px-4 py-8 text-sm bg-white shadow-xl rounded-l-2xl w-80">
-				<button
-					onClick={() => {
-						setToggleCart((prev) => !prev);
-					}}
-					className="flex items-center mb-4"
+			<section
+				onClick={() => setToggleCart((prev) => !prev)}
+				className="fixed top-0 right-0 w-full h-screen bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-sm"
+			>
+				<div
+					onClick={(e) => e.stopPropagation()}
+					className="absolute right-0 h-full px-4 py-8 text-sm bg-white shadow-xl opac rounded-l-2xl w-80"
 				>
-					{"> Cart "}
-					<span className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-rose-100 bg-rose-900">
-						{countCart()}
-					</span>
-				</button>
-
-				<div className="flex items-end justify-between pb-4 border-b">
-					<p>
-						total price :{" "}
-						<span className="text-lg font-semibold">
-							${countTotalPrice()}
-							<span className="text-xs">.00</span>
+					<button
+						onClick={() => setToggleCart((prev) => !prev)}
+						className="flex items-center mb-4"
+					>
+						{"> Cart "}
+						<span className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-rose-100 bg-rose-900">
+							{countCart()}
 						</span>
-					</p>
-					<Link to="/checkout">
-						<button
-							disabled={cart.length < 1}
-							className="px-4 py-2 rounded-lg bg-rose-900 text-rose-100"
-						>
-							checkout
-						</button>
-					</Link>
-				</div>
+					</button>
 
-				{cart.length > 0 ? (
-					<div className="mt-4">{itemsInCartElement}</div>
-				) : (
-					<div className="mt-4 font-thin text-center text-gray-400">
-						your cart is empty!
+					<div className="flex items-end justify-between pb-4 border-b">
+						<p>
+							total price :{" "}
+							<span className="text-lg font-semibold">
+								${countTotalPrice()}
+								<span className="text-xs">.00</span>
+							</span>
+						</p>
+						<Link to="/checkout">
+							<button
+								disabled={cart.length < 1}
+								className="px-4 py-2 rounded-lg bg-rose-900 text-rose-100"
+							>
+								checkout
+							</button>
+						</Link>
 					</div>
-				)}
+
+					{cart.length > 0 ? (
+						<div className="mt-4">{itemsInCartElement}</div>
+					) : (
+						<div className="mt-4 font-thin text-center text-gray-400">
+							your cart is empty!
+						</div>
+					)}
+				</div>
 			</section>
 		</>
 	);

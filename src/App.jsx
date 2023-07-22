@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
-import Cart from "./components/Cart";
 import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Checkout";
 import Footer from "./components/Footer";
@@ -28,7 +27,6 @@ function App() {
 							path="/categories/:productId"
 							element={<ProductDetails setToggleCart={setToggleCart} />}
 						/>
-						<Route path="/cart" element={<Cart />} />
 						<Route path="/checkout" element={<Checkout />} />
 					</Routes>
 				</section>

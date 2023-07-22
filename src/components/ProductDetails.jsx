@@ -33,7 +33,7 @@ const ProductDetails = ({ setToggleCart }) => {
 	));
 
 	const colorElement = thisProduct.color.map((item, i) => (
-		<p
+		<button
 			key={i}
 			onClick={() => chooseColor(item, setThisProductData)}
 			className={`bg-${item} rounded-full w-8 h-8 text-white shadow-md p-1`}
@@ -41,7 +41,7 @@ const ProductDetails = ({ setToggleCart }) => {
 			{thisProductData.color === item && (
 				<div className="w-full h-full border-2 border-gray-300 rounded-full"></div>
 			)}
-		</p>
+		</button>
 	));
 
 	return (
@@ -87,7 +87,7 @@ const ProductDetails = ({ setToggleCart }) => {
 							>
 								+
 							</button>
-							<p className="">{thisProductData.quantity}</p>
+							<div>{thisProductData.quantity}</div>
 							<button
 								onClick={() => minusQuantity(setThisProductData)}
 								className={`w-8 h-8 rounded-full text-rose-900 
