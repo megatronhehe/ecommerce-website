@@ -14,11 +14,11 @@ function App() {
 
 	return (
 		<>
-			<header>
+			<header className="fixed z-10 w-full">
 				<Header setToggleCart={setToggleCart} />
 			</header>
 
-			<main className="flex justify-center">
+			<main className="flex justify-center py-32">
 				<section className="w-full max-w-5xl sm:h-screen ">
 					<Routes>
 						<Route

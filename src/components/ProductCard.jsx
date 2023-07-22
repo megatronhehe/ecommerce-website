@@ -62,7 +62,7 @@ const ProductCard = ({ name, type, price, id, color, size, setToggleCart }) => {
 					</Link>
 				</div>
 
-				<Link to={`/categories${id}`}>
+				<Link to={`/categories/${id}`}>
 					<div className="flex flex-col w-full">
 						<h2 className="text-rose-900">{name}</h2>
 						<p className="text-sm text-gray-400">{type}</p>

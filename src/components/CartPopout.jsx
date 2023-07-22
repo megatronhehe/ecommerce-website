@@ -41,7 +41,7 @@ const CartPopout = ({ setToggleCart }) => {
 			key={i}
 			className="relative flex items-center gap-2 px-2 py-1 mb-4 overflow-hidden border shadow-sm rounded-xl"
 		>
-			<div className="w-2/5">
+			<div onClick={() => setToggleCart(false)} className="w-2/5">
 				<Link to={`/categories/${item.id}`}>
 					<img src={image} />
 				</Link>
@@ -93,7 +93,7 @@ const CartPopout = ({ setToggleCart }) => {
 		<>
 			<section
 				onClick={() => setToggleCart((prev) => !prev)}
-				className="fixed top-0 right-0 w-full h-screen bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-sm"
+				className="fixed top-0 right-0 z-50 w-full h-screen bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-sm"
 			>
 				<div
 					onClick={(e) => e.stopPropagation()}
@@ -119,8 +119,13 @@ const CartPopout = ({ setToggleCart }) => {
 						</p>
 						<Link to="/checkout">
 							<button
+								onClick={() => setToggleCart(false)}
 								disabled={cart.length < 1}
-								className="px-4 py-2 rounded-lg bg-rose-900 text-rose-100"
+								className={`px-4 py-2 rounded-lg tracking-wide  ${
+									cart.length < 1
+										? "bg-gray-300 text-white"
+										: "bg-rose-900 text-rose-100 "
+								}`}
 							>
 								checkout
 							</button>

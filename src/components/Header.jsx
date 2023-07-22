@@ -11,7 +11,7 @@ const Header = ({ setToggleCart }) => {
 	const { cart, countCart } = useContext(Context);
 
 	return (
-		<nav className="items-center justify-between px-6 pt-3 text-center text-rose-200 bg-rose-900 sm:flex sm:pt-0 ">
+		<nav className="items-center justify-between px-6 pt-3 text-center text-rose-900 bg-opacity-70 backdrop-filter backdrop-blur-sm bg-rose-400 sm:flex sm:pt-0">
 			{/* ignore this ul, theyre here so the color can render*/}
 			<ul className="hidden">
 				<li className="bg-rose-900"></li>
