@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard";
 import { PiDiamondsFourFill } from "react-icons/pi";
 import { BiCategoryAlt } from "react-icons/bi";
 
-const Categories = () => {
+const Categories = ({ setToggleCart }) => {
 	const { allProducts, selectedCategory, setSelectedCategory } =
 		useContext(Context);
 
@@ -26,6 +26,7 @@ const Categories = () => {
 			size={item.size}
 			altId={item.altId}
 			quantity={item.quantity}
+			setToggleCart={setToggleCart}
 		/>
 	));
 

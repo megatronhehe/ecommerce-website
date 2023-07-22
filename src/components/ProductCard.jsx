@@ -7,7 +7,7 @@ import { productsArray } from "../data/data";
 
 import { BsPlusLg, BsXLg, BsCartPlus } from "react-icons/bs";
 
-const ProductCard = ({ name, type, price, id, color, size }) => {
+const ProductCard = ({ name, type, price, id, color, size, setToggleCart }) => {
 	const { plusQuantity, minusQuantity, chooseSize, chooseColor, addToCart } =
 		useContext(Context);
 
@@ -107,7 +107,10 @@ const ProductCard = ({ name, type, price, id, color, size }) => {
 							</button>
 						</div>
 						<button
-							onClick={() => addToCart(thisProductData)}
+							onClick={() => {
+								addToCart(thisProductData);
+								setToggleCart(true);
+							}}
 							className="flex items-center justify-center gap-2 p-3 text-sm rounded-md bg-rose-900 text-rose-100"
 						>
 							<BsCartPlus className="text-xl" /> +cart

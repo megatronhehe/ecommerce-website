@@ -21,8 +21,15 @@ function App() {
 			<main className="flex justify-center">
 				<section className="w-full max-w-5xl sm:h-screen ">
 					<Routes>
-						<Route exact path="/" element={<Home />} />
-						<Route path="/categories" element={<Categories />} />
+						<Route
+							exact
+							path="/"
+							element={<Home setToggleCart={setToggleCart} />}
+						/>
+						<Route
+							path="/categories"
+							element={<Categories setToggleCart={setToggleCart} />}
+						/>
 						<Route
 							path="/categories/:productId"
 							element={<ProductDetails setToggleCart={setToggleCart} />}

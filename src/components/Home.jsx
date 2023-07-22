@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 
 import { PiDiamondsFourFill } from "react-icons/pi";
 
-const Home = () => {
+const Home = ({ setToggleCart }) => {
 	const { allProducts } = useContext(Context);
 
 	const featuredItemsElement = allProducts.map((item, i) => (
@@ -18,6 +18,7 @@ const Home = () => {
 			color={item.color}
 			size={item.size}
 			altId={item.altId}
+			setToggleCart={setToggleCart}
 		/>
 	));
 

@@ -51,9 +51,9 @@ const CartPopout = ({ setToggleCart }) => {
 					<Link to={`/categories/${item.id}`}>{item.name}</Link>
 				</div>
 
-				<div className="flex justify-between gap-4 p-2">
+				<div className="flex items-center justify-between gap-4 p-2">
 					<p>{item.type}</p>
-					<p>{item.color}</p>
+					<p className={`bg-${item.color} w-6 h-6 rounded-full`}></p>
 					<p>{item.size.toUpperCase()}</p>
 				</div>
 
