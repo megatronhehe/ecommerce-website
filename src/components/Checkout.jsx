@@ -14,6 +14,10 @@ const Checkout = () => {
 					im a frontend web dev for now, and still learning but i will get there
 					i promise.
 				</p>
+				<p>
+					im actually planning to use this project and launch it for real for my
+					attempt on clothing business, SOON
+				</p>
 
 				<p className="mt-8">list of things are yet to be implemented :</p>
 				<ol>
