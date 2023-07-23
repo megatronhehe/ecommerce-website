@@ -5,10 +5,10 @@ import { Context } from "../context/Context";
 import image from "../assets/default-img.png";
 
 import { BiChevronRight } from "react-icons/bi";
-import { BsFillCartXFill } from "react-icons/bs";
+import { BsFillCartXFill, BsTrashFill } from "react-icons/bs";
 
 const CartPopout = ({ setToggleCart }) => {
-	const { cart, setCart, countCart } = useContext(Context);
+	const { cart, setCart, countCart, clearCart } = useContext(Context);
 
 	const plusQuantityInCart = (altid) => {
 		setCart((prev) =>
@@ -133,9 +133,18 @@ const CartPopout = ({ setToggleCart }) => {
 					</div>
 
 					{cart.length > 0 ? (
-						<div className="mt-4">{itemsInCartElement}</div>
+						<div className="flex flex-col mt-4">
+							<button
+								onClick={clearCart}
+								className="flex items-center justify-end gap-2 "
+							>
+								<BsTrashFill />
+								clear cart
+							</button>
+							<div className="mt-4">{itemsInCartElement}</div>
+						</div>
 					) : (
-						<div className="mt-4 font-thin text-center text-gray-400">
+						<div className="mt-24 font-thin text-center text-gray-400">
 							your cart is empty!
 						</div>
 					)}

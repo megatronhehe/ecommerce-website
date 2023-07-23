@@ -59,6 +59,10 @@ const ContextProvider = ({ children }) => {
 		});
 	};
 
+	const clearCart = () => {
+		setCart([]);
+	};
+
 	const countCart = () => {
 		let total = 0;
 		cart.forEach((item) => (total += item.quantity));
@@ -80,6 +84,7 @@ const ContextProvider = ({ children }) => {
 				chooseColor,
 				setNewAltId,
 				addToCart,
+				clearCart,
 			}}
 		>
 			{children}
