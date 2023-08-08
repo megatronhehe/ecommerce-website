@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import { AnimatePresence } from "framer-motion";
+
 import Home from "./pages/Home/Home";
 import Categories from "./pages/Categories/Categories";
 import Checkout from "./pages/Checkout/Checkout";
 
 import MainContainer from "./components/MainContainer";
 import Header from "./components/Header";
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Footer from "./components/Footer";
 import CartPopout from "./components/CartPopout";
 
@@ -38,7 +40,9 @@ function App() {
 			</MainContainer>
 
 			{/* pop out cart */}
-			{toggleCart && <CartPopout setToggleCart={setToggleCart} />}
+			<AnimatePresence>
+				{toggleCart && <CartPopout setToggleCart={setToggleCart} />}
+			</AnimatePresence>
 
 			<Footer />
 		</>
