@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../context/Context";
+import { Context } from "../../context/Context";
 
-import ProductCard from "./ProductCard";
+import ProductCard from "../../components/ProductCard";
 
 import { PiDiamondsFourFill } from "react-icons/pi";
 import { BiCategoryAlt } from "react-icons/bi";
