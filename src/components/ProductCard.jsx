@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
 import image from "../assets/default-img.png";
+
+import { AnimatePresence, motion } from "framer-motion";
+
 import { Context } from "../context/Context";
 import { Link } from "react-router-dom";
 
@@ -26,23 +29,24 @@ const ProductCard = ({ name, type, price, id, color, size, setToggleCart }) => {
 	};
 
 	const colorElement = color.map((item, i) => (
-		<li
+		<motion.li
 			key={i}
+			whileHover={{ scale: 1.2, y: -2 }}
 			onClick={() => chooseColor(item, setThisProductData)}
 			className={`bg-${item} rounded-full w-8 h-8 text-white shadow-md p-1`}
 		>
 			{thisProductData.color === item && (
 				<div className="w-full h-full border-2 border-gray-300 rounded-full"></div>
 			)}
-		</li>
+		</motion.li>
 	));
 
 	const sizeElement = size.map((item, i) => (
 		<li
 			key={i}
 			onClick={() => chooseSize(item, setThisProductData)}
-			className={`px-2 py-1 rounded-lg ${
-				thisProductData.size === item && "border border-rose-900"
+			className={`px-2 py-1 rounded-lg border  ${
+				thisProductData.size === item ? " border-rose-900" : "border-white"
 			}`}
 		>
 			{item}
@@ -80,43 +84,49 @@ const ProductCard = ({ name, type, price, id, color, size, setToggleCart }) => {
 					{isToggledMore ? <BsXLg /> : <BsPlusLg />}
 				</button>
 
-				<div
-					className={`opacity-95 absolute flex flex-col gap-2 bottom-0 bg-white w-full rounded-xl shadow-md p-2 text-sm ${
-						!isToggledMore && "hidden"
-					}`}
-				>
-					<ul className="flex justify-between pb-2 border-b-2">
-						{colorElement}
-					</ul>
-
-					<ul className="flex justify-between pb-2 border-b-2">
-						{sizeElement}
-					</ul>
-
-					<div className="flex items-center justify-center gap-2">
-						<div className="flex justify-around w-4/5">
-							<button
-								onClick={() => minusQuantity(setThisProductData)}
-								disabled={thisProductData.quantity < 2}
-							>
-								-
-							</button>
-							<p>{thisProductData.quantity}</p>
-							<button onClick={() => plusQuantity(setThisProductData)}>
-								+
-							</button>
-						</div>
-						<button
-							onClick={() => {
-								addToCart(thisProductData);
-								setToggleCart(true);
-							}}
-							className="flex items-center justify-center gap-2 p-3 text-sm rounded-md bg-rose-900 text-rose-100"
+				<AnimatePresence>
+					{isToggledMore && (
+						<motion.div
+							initial={{ opacity: 0, y: -15 }}
+							animate={{ opacity: 1, scale: 1, y: 0 }}
+							transition={{ type: "tween" }}
+							exit={{ opacity: 0, y: -15 }}
+							className={`opacity-95 absolute flex flex-col gap-2 bottom-0 bg-white w-full rounded-xl shadow-md p-2 text-sm `}
 						>
-							<BsCartPlus className="text-xl" /> +cart
-						</button>
-					</div>
-				</div>
+							<ul className="flex justify-between pb-2 border-b-2">
+								{colorElement}
+							</ul>
+
+							<ul className="flex justify-between pb-2 border-b-2">
+								{sizeElement}
+							</ul>
+
+							<div className="flex items-center justify-center gap-2">
+								<div className="flex justify-around w-4/5">
+									<button
+										onClick={() => minusQuantity(setThisProductData)}
+										disabled={thisProductData.quantity < 2}
+									>
+										-
+									</button>
+									<p>{thisProductData.quantity}</p>
+									<button onClick={() => plusQuantity(setThisProductData)}>
+										+
+									</button>
+								</div>
+								<button
+									onClick={() => {
+										addToCart(thisProductData);
+										setToggleCart(true);
+									}}
+									className="flex items-center justify-center gap-2 p-3 text-sm border border-white rounded-md bg-rose-900 text-rose-100 hover:bg-white hover:text-rose-900 hover:border-rose-900"
+								>
+									<BsCartPlus className="text-xl" /> +cart
+								</button>
+							</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
 		</div>
 	);

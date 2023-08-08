@@ -144,24 +144,27 @@ const CartPopout = ({ setToggleCart }) => {
 					</Link>
 				</div>
 
-				{cart.length > 0 ? (
-					<div className="flex flex-col mt-4">
-						<button
-							onClick={clearCart}
-							className="flex items-center justify-end gap-2 "
+				<AnimatePresence>
+					{cart.length > 0 && (
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="flex flex-col mt-4"
 						>
-							<BsTrashFill />
-							clear cart
-						</button>
-						<div className="mt-4">
-							<AnimatePresence>{itemsInCartElement}</AnimatePresence>
-						</div>
-					</div>
-				) : (
-					<div className="mt-24 font-thin text-center text-gray-400">
-						your cart is empty!
-					</div>
-				)}
+							<button
+								onClick={clearCart}
+								className="flex items-center justify-end gap-2"
+							>
+								<BsTrashFill />
+								clear cart
+							</button>
+							<div className="mt-4">
+								<AnimatePresence>{itemsInCartElement}</AnimatePresence>
+							</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</motion.div>
 		</motion.section>
 	);
