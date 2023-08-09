@@ -114,7 +114,7 @@ const ProductDetails = ({ setToggleCart }) => {
 							addToCart(thisProductData);
 							setToggleCart(true);
 						}}
-						className="flex items-center justify-center w-full gap-2 py-4 mt-6 text-sm rounded-lg shadow-md text-rose-100 bg-rose-900"
+						className="flex items-center justify-center w-full gap-2 py-4 mt-6 text-sm bg-white border rounded-lg shadow-md text-rose-900 border-rose-900 hover:bg-rose-900 hover:text-white"
 					>
 						<BsCartPlus className="text-2xl" /> add to cart
 					</button>

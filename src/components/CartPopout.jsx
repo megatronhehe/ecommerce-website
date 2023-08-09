@@ -59,7 +59,7 @@ const CartPopout = ({ setToggleCart }) => {
 
 				<div className="flex items-center justify-between gap-4 p-2">
 					<p>{item.type}</p>
-					<p className={`bg-${item.color} w-6 h-6 rounded-full`}></p>
+					<p className={`bg-${item.color} w-6 h-6 rounded-full shadow-lg`}></p>
 					<p>{item.size.toUpperCase()}</p>
 				</div>
 
@@ -144,9 +144,10 @@ const CartPopout = ({ setToggleCart }) => {
 					</Link>
 				</div>
 
-				<AnimatePresence>
-					{cart.length > 0 && (
+				<AnimatePresence mode="wait">
+					{cart.length > 0 ? (
 						<motion.div
+							key={cart.length > 0}
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
@@ -163,6 +164,15 @@ const CartPopout = ({ setToggleCart }) => {
 								<AnimatePresence>{itemsInCartElement}</AnimatePresence>
 							</div>
 						</motion.div>
+					) : (
+						<motion.p
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="w-full mt-40 text-center text-gray-300"
+						>
+							your cart is empty!
+						</motion.p>
 					)}
 				</AnimatePresence>
 			</motion.div>
