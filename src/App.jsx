@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { AnimatePresence } from "framer-motion";
 
@@ -16,27 +16,31 @@ import CartPopout from "./components/CartPopout";
 function App() {
 	const [toggleCart, setToggleCart] = useState(false);
 
+	const location = useLocation();
+
 	return (
 		<>
 			<Header setToggleCart={setToggleCart} />
 
 			<MainContainer>
-				<Routes>
-					<Route
-						exact
-						path="/"
-						element={<Home setToggleCart={setToggleCart} />}
-					/>
-					<Route
-						path="/categories"
-						element={<Categories setToggleCart={setToggleCart} />}
-					/>
-					<Route
-						path="/categories/:productId"
-						element={<ProductDetails setToggleCart={setToggleCart} />}
-					/>
-					<Route path="/checkout" element={<Checkout />} />
-				</Routes>
+				<AnimatePresence mode="wait">
+					<Routes location={location} key={location.pathname}>
+						<Route
+							exact
+							path="/"
+							element={<Home setToggleCart={setToggleCart} />}
+						/>
+						<Route
+							path="/categories"
+							element={<Categories setToggleCart={setToggleCart} />}
+						/>
+						<Route
+							path="/categories/:productId"
+							element={<ProductDetails setToggleCart={setToggleCart} />}
+						/>
+						<Route path="/checkout" element={<Checkout />} />
+					</Routes>
+				</AnimatePresence>
 			</MainContainer>
 
 			{/* pop out cart */}
