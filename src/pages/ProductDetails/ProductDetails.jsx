@@ -51,9 +51,9 @@ const ProductDetails = ({ setToggleCart }) => {
 
 	return (
 		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0, scale: 0.8 }}
+			initial={{ opacity: 0, y: 10 }}
+			animate={{ opacity: 1, y: 0 }}
+			exit={{ opacity: 0, y: 10 }}
 		>
 			<button
 				className="top-0 flex items-center pb-4 my-8 ml-2 text-gray-600"
